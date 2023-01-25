@@ -7,33 +7,35 @@ class EqualsButton extends React.Component {
         this.handleClick = this.handleClick.bind(this)
     }
 
-    handleClick(){
-        this.props.data.signprev = this.props.data.sign;
-        if (this.props.data.a !== '' && this.props.data.b !== '') {
-            switch (this.props.data.signprev) {
+    handleClick() {
+        const data = this.props.data;
+        data.signprev = data.sign;
+        if (data.a !== '' && data.b !== '') {
+            switch (data.signprev) {
                 case "+":
-                    this.props.data.temp = (+this.props.data.a) + (+this.props.data.b);
+                    data.temp = (+data.a) + (+data.b);
                     break;
                 case "-":
-                    this.props.data.temp = this.props.data.a - this.props.data.b;
+                    data.temp = data.a - data.b;
                     break;
                 case "*":
-                    this.props.data.temp = this.props.data.a * this.props.data.b;
+                    data.temp = data.a * data.b;
                     break;
                 case "/":
-                    this.props.data.temp = this.props.data.a / this.props.data.b;
+                    data.temp = data.a / data.b;
                     break;
             }
-            this.props.data.results.push(this.props.data.a + this.props.data.signprev + this.props.data.b + '=' + this.props.data.temp);
-            this.props.data.b = '';
-            this.props.data.a = this.props.data.temp;
-            this.props.data.signprev = '';
-            this.props.data.sign = '';
-            this.props.data.out = this.props.data.a;
-        } else
-        {this.props.data.signprev = '';
-        this.props.data.sign = '';}
-        this.props.onInput(this.props.data);
+            data.results.push(data.a + data.signprev + data.b + '=' + data.temp);
+            data.b = '';
+            data.a = data.temp;
+            data.signprev = '';
+            data.sign = '';
+            data.out = data.a;
+        } else {
+            data.signprev = '';
+            data.sign = '';
+        }
+        this.props.onInput(data);
     }
 
     render() {

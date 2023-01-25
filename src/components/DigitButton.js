@@ -9,16 +9,18 @@ class DigitButton extends React.Component {
 
 
     handleClick() {
-        if (this.props.data.b === '' && this.props.data.sign === '') {
-            this.props.data.a += this.props.text;
-        } else if (this.props.data.a !== '' && this.props.data.b !== '' && this.props.data.finish) {
-            this.props.data.b = this.props.text;
-            this.props.data.finish = false;
+        const data = this.props.data;
+        const text = this.props.text;
+        if (data.b === '' && data.sign === '') {
+            data.a += text;
+        } else if (data.a !== '' && data.b !== '' && data.finish) {
+            data.b = text;
+            data.finish = false;
         } else {
-            this.props.data.b += this.props.text;
+            data.b += text;
         }
-        this.props.data.out=this.props.data.a+this.props.data.sign+this.props.data.b;
-        this.props.onInput(this.props.data);
+        data.out = data.a + data.sign + data.b;
+        this.props.onInput(data);
     }
 
     render() {

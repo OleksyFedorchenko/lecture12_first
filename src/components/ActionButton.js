@@ -8,31 +8,33 @@ class ActionButton extends React.Component {
 
     }
 
-    handleClick(){
-        if (this.props.data.a === '') this.props.data.a = '0';
-        this.props.data.signprev = this.props.data.sign;
-        this.props.data.sign = this.props.text;
-        if (this.props.data.a !== '' && this.props.data.b !== '') {
-            switch (this.props.data.signprev) {
+    handleClick() {
+        const data = this.props.data;
+        const text = this.props.text;
+        if (data.a === '') data.a = '0';
+        data.signprev = data.sign;
+        data.sign = text;
+        if (data.a !== '' && data.b !== '') {
+            switch (data.signprev) {
                 case "+":
-                    this.props.data.temp = (+this.props.data.a) + (+this.props.data.b);
+                    data.temp = (+data.a) + (+data.b);
                     break;
                 case "-":
-                    this.props.data.temp = this.props.data.a - this.props.data.b;
+                    data.temp = data.a - data.b;
                     break;
                 case "*":
-                    this.props.data.temp = this.props.data.a * this.props.data.b;
+                    data.temp = data.a * data.b;
                     break;
                 case "/":
-                    this.props.data.temp = this.props.data.a / this.props.data.b;
+                    data.temp = data.a / data.b;
                     break;
             }
-            this.props.data.results.push(this.props.data.a + this.props.data.signprev + this.props.data.b + '=' + this.props.data.temp);
-            this.props.data.b = '';
-            this.props.data.a = this.props.data.temp;
+            data.results.push(data.a + data.signprev + data.b + '=' + data.temp);
+            data.b = '';
+            data.a = data.temp;
         }
-        this.props.data.out=this.props.data.a+this.props.data.sign+this.props.data.b;
-        this.props.onInput(this.props.data);
+        data.out = data.a + data.sign + data.b;
+        this.props.onInput(data);
     }
 
     render() {
@@ -41,4 +43,5 @@ class ActionButton extends React.Component {
         );
     }
 }
+
 export default ActionButton;
