@@ -86,7 +86,13 @@ class App2 extends React.Component {
 
     getFromBackEnd() {
 
-
+        const url = "http://localhost:8080/task?count=" + tasksCount;
+        const options = {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json;charset=utf-8'
+            },
+        };
         const promise = fetch(url, options);
         promise.then(response => {
             if (response.ok) {
