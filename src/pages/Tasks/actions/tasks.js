@@ -12,7 +12,7 @@ const errorReceiveTasks = () => ({
 })
 
 const getTasks = (tasksCount) => {
-    const url = "http://localhost:8080/task?count=" + tasksCount;
+    const url = "http://localhost:8080/math/examples?count=" + tasksCount;
     const options = {
         method: 'GET',
         headers: {
