@@ -6,9 +6,9 @@ import ActionButton from "./components/ActionButton";
 import EqualsButton from "./components/EqualsButton";
 import Tasks from './pages/Tasks';
 import tasksReducer from './pages/Tasks/reducers/tasks.js';
-import {createStore} from "redux";
+import {legacy_createStore as createStore} from "redux";
 import {Provider} from "react-redux";
-
+import uuid from "uuidv4";
 
 
 const store = createStore(tasksReducer);
@@ -21,10 +21,12 @@ class App extends React.Component {
             b: '',
             sign: '',
             finish: false,
-            signprev: '',
+            signPrev: '',
             temp: '',
-            results: [],
-            out: ''
+            results: [],  //історія обчислень
+            out: '',      //поле вводу
+            disabled: true, //властивість кнопки обчислення результатів бекенду
+            count: '1',   // кількість необхідних результатів з бекенду
         }
         this.onInput = this.onInput.bind(this);
         this.clearAll = this.clearAll.bind(this);
@@ -43,21 +45,12 @@ class App extends React.Component {
         })
     }
 
-    componentDidUpdate(prevProps, prevState) {
-        console.log(this.state);
-    }
-
     render() {
         return (
             <div>
                 <div>
-                    <Provider store={store}>
-                        <Tasks/>
-                    </Provider>
-                </div>
-                <div>
                     {this.state.results.map((item) => (
-                        <p key={item} className="history">{item}</p>
+                        <p key={uuid()} className="history">{item}</p>
                     ))}
                 </div>
                 <div>
@@ -83,6 +76,7 @@ class App extends React.Component {
                 </div>
                 <div>
                     <Button variant="contained" onClick={this.clearAll}>AC</Button>
+                    <Button variant="contained" onClick={() => this.setState({results: []})}>CLEAR HISTORY</Button>
                 </div>
                 <div>
                     <ActionButton text="+" onInput={this.onInput} data={this.state}/>
@@ -91,7 +85,12 @@ class App extends React.Component {
                     <ActionButton text="/" onInput={this.onInput} data={this.state}/>
                     <EqualsButton text="=" onInput={this.onInput} data={this.state}/>
                 </div>
-
+                <br/>
+                <div>
+                    <Provider store={store}>
+                        <Tasks onInput={this.onInput} data={this.state}/>
+                    </Provider>
+                </div>
             </div>
         );
     }

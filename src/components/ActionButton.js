@@ -12,10 +12,11 @@ class ActionButton extends React.Component {
         const data = this.props.data;
         const text = this.props.text;
         if (data.a === '') data.a = '0';
-        data.signprev = data.sign;
+        data.signPrev = data.sign;
         data.sign = text;
         if (data.a !== '' && data.b !== '') {
-            switch (data.signprev) {
+            // eslint-disable-next-line
+            switch (data.signPrev) {
                 case "+":
                     data.temp = (+data.a) + (+data.b);
                     break;
@@ -29,7 +30,7 @@ class ActionButton extends React.Component {
                     data.temp = data.a / data.b;
                     break;
             }
-            data.results.push(data.a + data.signprev + data.b + '=' + data.temp);
+            data.results.push(data.a + data.signPrev + data.b + '=' + data.temp);
             data.b = '';
             data.a = data.temp;
         }

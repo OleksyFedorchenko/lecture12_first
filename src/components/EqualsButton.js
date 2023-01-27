@@ -9,9 +9,10 @@ class EqualsButton extends React.Component {
 
     handleClick() {
         const data = this.props.data;
-        data.signprev = data.sign;
+        data.signPrev = data.sign;
         if (data.a !== '' && data.b !== '') {
-            switch (data.signprev) {
+            // eslint-disable-next-line
+            switch (data.signPrev) {
                 case "+":
                     data.temp = (+data.a) + (+data.b);
                     break;
@@ -25,14 +26,14 @@ class EqualsButton extends React.Component {
                     data.temp = data.a / data.b;
                     break;
             }
-            data.results.push(data.a + data.signprev + data.b + '=' + data.temp);
+            data.results.push(data.a + data.signPrev + data.b + '=' + data.temp);
             data.b = '';
             data.a = data.temp;
-            data.signprev = '';
+            data.signPrev = '';
             data.sign = '';
             data.out = data.a;
         } else {
-            data.signprev = '';
+            data.signPrev = '';
             data.sign = '';
         }
         this.props.onInput(data);
