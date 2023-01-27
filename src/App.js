@@ -49,12 +49,14 @@ class App extends React.Component {
         return (
             <div>
                 <div>
-                    {this.state.results.map((item) => (
+                    {
+                        this.state.results.map((item) =>
+                        (
                         <p key={uuid()} className="history">{item}</p>
                     ))}
                 </div>
                 <div>
-                    <p>{this.state.a + this.state.sign + this.state.b}</p>
+                    <p>{this.state.out}</p>
                 </div>
                 <div>
                     <DigitButton text="7" onInput={this.onInput} data={this.state}/>
