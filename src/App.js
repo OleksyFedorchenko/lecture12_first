@@ -50,10 +50,15 @@ class App extends React.Component {
             <div>
                 <div>
                     {
-                        this.state.results.map((item) =>
-                        (
-                        <p key={uuid()} className="history">{item}</p>
-                    ))}
+                        this.state.results.map((item) => {
+                            if (this.state.results.indexOf(item) === this.state.results.length - 1)
+                                return (<p style={{color: "blue", fontSize: "18px"}}
+                                           key={uuid()} className="history">
+                                    <b>{item}</b></p>)
+                            else
+                                return (<p key={uuid()} className="history">{item}</p>)
+                        })
+                    }
                 </div>
                 <div>
                     <p>{this.state.out}</p>
