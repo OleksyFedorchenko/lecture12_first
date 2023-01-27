@@ -40,6 +40,7 @@ class App extends React.Component {
         this.setState({
             a: '',
             b: '',
+            out:'',
             sign: '',
             finish: false,
         })
