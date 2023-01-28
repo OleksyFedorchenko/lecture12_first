@@ -27,12 +27,12 @@ class ActionButton extends React.Component {
                     data.temp = data.a * data.b;
                     break;
                 case "/":
-                    data.temp = data.a / data.b;
+                    data.b === '0' ? data.temp = "Error division by zero" : data.temp = data.a / data.b;
                     break;
             }
             data.results.push(data.a + data.signPrev + data.b + '=' + data.temp);
             data.b = '';
-            data.a = data.temp;
+            data.temp === "Error division by zero" ? data.a = '0' : data.a = data.temp;
         }
         data.out = data.a + data.sign + data.b;
         this.props.onInput(data);

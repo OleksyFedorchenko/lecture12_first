@@ -37,7 +37,7 @@ class Tasks extends React.Component {
             } else if (ops.includes('*')) {
                 tempRes = dig[0] * dig[1];
             } else if (ops.includes('/')) {
-                tempRes = dig[0] / dig[1];
+                dig[1] === 0 ? tempRes = "Error division by zero" : tempRes = dig[0] / dig[1];
             }
             this.addResult(dig[0] + ops[1] + dig[1] + '=' + tempRes);
         }
